@@ -1,36 +1,43 @@
-// Step 1 -> Step 2 & 3 Transition
-setTimeout(() => {
-  document.getElementById('vscode-intro').style.display = 'none';
-  const mainStage = document.getElementById('main-stage');
-  mainStage.classList.remove('hidden');
+// Auto Dynamic Scaling for Mobile Screens
+function autoScaleApp() {
+  const wrapper = document.getElementById('app-wrapper');
+  const targetWidth = 800;
+  const targetHeight = 450;
+  
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  
+  const scaleX = windowWidth / targetWidth;
+  const scaleY = windowHeight / targetHeight;
+  
+  // Choose smaller scale factor to fit screen
+  const scale = Math.min(scaleX, scaleY) * 0.95;
+  wrapper.style.transform = `scale(${scale})`;
+}
 
-  // Trigger Confetti when Cake lands (00:04 - 00:06)
+window.addEventListener('resize', autoScaleApp);
+window.addEventListener('DOMContentLoaded', () => {
+  autoScaleApp();
+  
+  // Transition after Intro (00:03)
   setTimeout(() => {
-    confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
-  }, 500);
+    document.getElementById('vscode-intro').style.display = 'none';
+    document.getElementById('main-canvas').classList.remove('hidden');
 
-  // Background switches to Pink Grid (00:07)
-  setTimeout(() => {
-    mainStage.classList.add('grid-bg');
-  }, 2000);
+    // Confetti Animation on Cake Drop
+    setTimeout(() => {
+      confetti({ particleCount: 70, spread: 80, origin: { y: 0.6 } });
+    }, 400);
 
-}, 3300);
+  }, 3200);
+});
 
-// Modal Controls
-function openCard() {
-  document.getElementById('cardModal').style.display = 'flex';
-}
+function openCard() { document.getElementById('cardModal').style.display = 'flex'; }
+function openEnvelope() { document.getElementById('envelopeModal').style.display = 'flex'; }
+function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-function openEnvelope() {
-  document.getElementById('envelopeModal').style.display = 'flex';
-}
-
-function closeModal(id) {
-  document.getElementById(id).style.display = 'none';
-}
-
-// Step 5: Love Cards Pop-up
 function triggerLovePopups() {
-  confetti({ particleCount: 50, spread: 100, origin: { y: 0.5 }, colors: ['#ff4757', '#e84393'] });
-  alert("💌 Love Notes: You are amazing! Have a magical Birthday! ✨");
+  confetti({ particleCount: 60, spread: 100, colors: ['#ff4757', '#e84393'] });
+  alert("💌 Love Note: You are truly special!");
 }
+
