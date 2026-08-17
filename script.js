@@ -1,17 +1,34 @@
-setTimeout(() => {
-  document.getElementById('vscode-intro').style.display = 'none';
-  document.getElementById('main-canvas').classList.remove('hidden');
+// 3 Second por Intro bonding hide hoye Main Canvas dekhabe
+setTimeout(function() {
+  var intro = document.getElementById('vscode-intro');
+  var canvas = document.getElementById('main-canvas');
+  
+  if (intro) intro.style.display = 'none';
+  if (canvas) canvas.classList.remove('hidden');
 
-  setTimeout(() => {
-    confetti({ particleCount: 60, spread: 70, origin: { y: 0.6 } });
-  }, 300);
+  // Confetti trigger
+  try {
+    confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
+  } catch (e) {
+    console.log("Confetti loaded");
+  }
 }, 3000);
 
-function openCard() { document.getElementById('cardModal').style.display = 'flex'; }
-function openEnvelope() { document.getElementById('envelopeModal').style.display = 'flex'; }
-function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+function openCard() {
+  document.getElementById('cardModal').style.display = 'flex';
+}
+
+function openEnvelope() {
+  document.getElementById('envelopeModal').style.display = 'flex';
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = 'none';
+}
 
 function triggerLovePopups() {
-  confetti({ particleCount: 50, spread: 90, colors: ['#ff4757', '#e84393'] });
+  try {
+    confetti({ particleCount: 60, spread: 90, colors: ['#ff4757', '#e84393'] });
+  } catch(e) {}
   alert("💌 Love Note: You are truly special!");
 }
