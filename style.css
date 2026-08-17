@@ -1,246 +1,66 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Comic Sans MS', 'Segoe UI', cursive, sans-serif;
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', cursive, sans-serif; }
+body { height: 100vh; width: 100vw; overflow: hidden; background: #1e1e1e; }
+
+/* 1. VS Code Intro */
+#vscode-intro {
+  display: flex; width: 100%; height: 100vh; background: #1e1e1e; color: #00ff66; padding: 20px; gap: 10px;
+  animation: fadeOutCode 0.8s ease 3s forwards;
+}
+.code-panel { flex: 1; background: #252526; border: 1px solid #3c3c3c; padding: 15px; border-radius: 8px; font-family: monospace; }
+.code-panel h3 { color: #569cd6; margin-bottom: 10px; font-size: 14px; }
+
+@keyframes fadeOutCode {
+  to { transform: translateY(100%); opacity: 0; display: none; }
 }
 
-body {
-  height: 100vh;
-  width: 100vw;
-  background: #ffe3ed;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* 2 & 3. Main Stage */
+#main-stage {
+  width: 100%; height: 100vh; background: radial-gradient(circle, #ff758c 0%, #ff7eb3 100%);
+  display: flex; justify-content: center; align-items: center; position: relative; transition: background 1s;
 }
-
-/* Screen 1: Intro Flying Cake */
-#intro-screen {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: #fde8f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-}
-
-.flying-cake {
-  width: 180px;
-  height: 140px;
-  background: linear-gradient(to bottom, #5c2c1a 0%, #3d1b0f 100%);
-  border-radius: 50px 50px 20px 20px;
-  border: 4px solid #f8a5c2;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3), inset 0 10px 0 #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #fff;
-  font-weight: bold;
-  animation: flyIn 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-@keyframes flyIn {
-  0% {
-    transform: translate(-300px, 300px) scale(0.3) rotate(-20deg);
-    opacity: 0;
-  }
-  70% {
-    transform: translate(0, 0) scale(1.1) rotate(5deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-    opacity: 1;
-  }
-}
-
-.cake-top, .cake-text {
-  font-size: 13px;
-  text-shadow: 1px 1px 2px #000;
-}
-.cake-top span, .cake-text span {
-  color: #ff7675;
-  font-size: 16px;
-}
-
-/* Screen 2: Main Grid Layout */
-.hidden {
-  display: none !important;
-}
-
-#main-content {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 1s ease forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.birthday-card {
-  width: 90%;
-  max-width: 850px;
-  height: 380px;
+#main-stage.grid-bg {
   background-color: #ffccd5;
-  background-image: 
-    linear-gradient(#ffb3c1 1px, transparent 1px),
-    linear-gradient(90deg, #ffb3c1 1px, transparent 1px);
-  background-size: 20px 20px;
-  border: 4px solid #e84393;
-  border-radius: 25px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  box-shadow: 0 15px 35px rgba(232, 67, 147, 0.3);
+  background-image: linear-gradient(#ffb3c1 1px, transparent 1px), linear-gradient(90deg, #ffb3c1 1px, transparent 1px);
+  background-size: 25px 25px;
 }
+.hidden { display: none !important; }
 
-/* Flags/Bunting decoration */
 .bunting {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 25px;
-  background: repeating-linear-gradient(
-    135deg,
-    #ff4757, #ff4757 15px,
-    #ffffff 15px, #ffffff 30px
-  );
+  position: absolute; top: 0; width: 100%; height: 30px;
+  background: repeating-linear-gradient(45deg, #ff4757, #ff4757 15px, #fff 15px, #fff 30px);
   clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
-  border-radius: 20px 20px 0 0;
 }
 
-/* Left Panel */
-.hb-title {
-  font-size: 45px;
-  color: #ffffff;
-  text-shadow: 3px 3px 0 #d63031, -2px -2px 0 #d63031, 2px -2px 0 #d63031, -2px 2px 0 #d63031;
-  line-height: 1;
-}
-.hb-title span { color: #ff4757; }
-
-.date-tag {
-  background: #e84393;
-  color: white;
-  padding: 4px 15px;
-  border-radius: 12px;
-  font-size: 12px;
-  display: inline-block;
-  margin: 10px 0 15px 0;
-  font-weight: bold;
+.content-wrapper {
+  display: flex; width: 90%; max-width: 850px; background: rgba(255, 255, 255, 0.4);
+  border: 4px solid #e84393; border-radius: 20px; padding: 20px; justify-content: space-between; align-items: center;
 }
 
-.btn-group {
-  display: flex;
-  gap: 10px;
+/* Cake Landing Animation */
+.cake-box {
+  width: 150px; height: 120px; background: #4a2311; border: 4px solid #ff7eb3; border-radius: 30px 30px 10px 10px;
+  color: white; text-align: center; display: flex; align-items: center; justify-content: center;
+  transform: translateY(-500px); animation: dropCake 1s cubic-bezier(0.175, 0.885, 0.32, 1.27) 3.5s forwards;
 }
+@keyframes dropCake { to { transform: translateY(0); } }
 
-.action-btn {
-  background: #ff6b81;
-  color: white;
-  border: 2px solid #fff;
-  padding: 8px 14px;
-  border-radius: 15px;
-  font-size: 12px;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: 0.2s;
-}
-.action-btn:hover {
-  transform: translateY(-2px);
-  background: #ff4757;
-}
+.hb-title { font-size: 36px; color: #d63031; }
+.date-badge, .name-badge { background: #e84393; color: white; padding: 5px 12px; border-radius: 10px; font-weight: bold; display: inline-block; }
+.btn-group { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.btn { background: #ff4757; color: white; border: none; padding: 8px; border-radius: 10px; cursor: pointer; font-weight: bold; }
 
-/* Center Panel (Landed Cake) */
-.landed-cake {
-  width: 160px;
-  height: 130px;
-  background: linear-gradient(to bottom, #5c2c1a 0%, #3d1b0f 100%);
-  border-radius: 40px 40px 15px 15px;
-  border: 4px solid #f8a5c2;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2), inset 0 8px 0 #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #fff;
-  cursor: pointer;
-  animation: pulseCake 2s infinite ease-in-out;
-}
-
-@keyframes pulseCake {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-/* Right Panel Profile */
-.right-panel {
-  text-align: center;
-}
-
-.profile-circle {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  border: 5px solid #fff;
-  overflow: hidden;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-}
-
-.profile-circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.name-badge {
-  background: #e84393;
-  color: white;
-  padding: 5px 20px;
-  border-radius: 15px;
-  font-weight: bold;
-  margin-top: -15px;
-  position: relative;
-  display: inline-block;
-  border: 2px solid #fff;
-}
+.profile-frame { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #fff; overflow: hidden; margin-bottom: 5px; }
+.profile-frame img { width: 100%; height: 100%; object-fit: cover; }
 
 /* Modals */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 200;
-}
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 10; }
+.modal-content { background: #fff; padding: 25px; border-radius: 15px; width: 300px; text-align: center; position: relative; }
+.close { position: absolute; right: 15px; top: 10px; font-size: 20px; cursor: pointer; }
 
-.modal-box {
-  background: #fff0f5;
-  padding: 25px;
-  border-radius: 20px;
-  border: 3px solid #ff6b81;
-  max-width: 350px;
-  width: 85%;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
+/* Step 4 & 5 Animation */
+.card-flip { animation: flipIn 0.6s ease; }
+@keyframes flipIn { from { transform: rotateY(90deg); } to { transform: rotateY(0); } }
 
-.close-btn {
-  position: absolute;
-  top: 10px; right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-  color: #ff4757;
-}
+.heart-shape { font-size: 50px; animation: pulse 1s infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+.open-love-btn { background: #e84393; color: white; border: none; padding: 8px 20px; border-radius: 20px; margin-top: 15px; cursor: pointer; }
