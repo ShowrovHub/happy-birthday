@@ -1,66 +1,78 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', cursive, sans-serif; }
-body { height: 100vh; width: 100vw; overflow: hidden; background: #1e1e1e; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Comic Sans MS', cursive, sans-serif; }
 
-/* 1. VS Code Intro */
+body {
+  height: 100vh; width: 100vw;
+  background: #121212;
+  display: flex; justify-content: center; align-items: center;
+  overflow: hidden;
+}
+
+/* Master Scaling Logic for Mobile Devices */
+#app-wrapper {
+  width: 800px;
+  height: 450px;
+  position: relative;
+  transform-origin: center center;
+}
+
+/* 1. VS Code Screen */
 #vscode-intro {
-  display: flex; width: 100%; height: 100vh; background: #1e1e1e; color: #00ff66; padding: 20px; gap: 10px;
-  animation: fadeOutCode 0.8s ease 3s forwards;
+  width: 100%; height: 100%;
+  background: #1e1e1e;
+  display: flex; gap: 10px; padding: 15px;
+  position: absolute; top: 0; left: 0; z-index: 10;
+  animation: fadeOutIntro 0.5s ease 3s forwards;
 }
-.code-panel { flex: 1; background: #252526; border: 1px solid #3c3c3c; padding: 15px; border-radius: 8px; font-family: monospace; }
-.code-panel h3 { color: #569cd6; margin-bottom: 10px; font-size: 14px; }
+.code-panel { flex: 1; background: #252526; border: 1px solid #3c3c3c; border-radius: 8px; padding: 10px; color: #4ec9b0; font-family: monospace; }
+@keyframes fadeOutIntro { to { opacity: 0; visibility: hidden; } }
 
-@keyframes fadeOutCode {
-  to { transform: translateY(100%); opacity: 0; display: none; }
-}
-
-/* 2 & 3. Main Stage */
-#main-stage {
-  width: 100%; height: 100vh; background: radial-gradient(circle, #ff758c 0%, #ff7eb3 100%);
-  display: flex; justify-content: center; align-items: center; position: relative; transition: background 1s;
-}
-#main-stage.grid-bg {
+/* 2. Main Canvas (Video Clone) */
+#main-canvas {
+  width: 100%; height: 100%;
   background-color: #ffccd5;
-  background-image: linear-gradient(#ffb3c1 1px, transparent 1px), linear-gradient(90deg, #ffb3c1 1px, transparent 1px);
-  background-size: 25px 25px;
+  background-image: linear-gradient(#ffb3c1 1.5px, transparent 1.5px), linear-gradient(90deg, #ffb3c1 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+  border: 6px solid #e84393; border-radius: 24px;
+  position: relative;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 30px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
-.hidden { display: none !important; }
 
-.bunting {
-  position: absolute; top: 0; width: 100%; height: 30px;
+.hidden { display: none; }
+
+.bunting-flags {
+  position: absolute; top: 0; left: 0; width: 100%; height: 25px;
   background: repeating-linear-gradient(45deg, #ff4757, #ff4757 15px, #fff 15px, #fff 30px);
   clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
 }
 
-.content-wrapper {
-  display: flex; width: 90%; max-width: 850px; background: rgba(255, 255, 255, 0.4);
-  border: 4px solid #e84393; border-radius: 20px; padding: 20px; justify-content: space-between; align-items: center;
-}
+/* Left Section */
+.panel-left { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.hb-title { font-size: 38px; color: #ff4757; line-height: 1.1; }
+.date-badge { background: #e84393; color: white; padding: 4px 12px; border-radius: 10px; font-weight: bold; font-size: 14px; }
+.btn-group { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.action-btn { background: #ff4757; color: white; border: none; padding: 8px 14px; border-radius: 12px; font-weight: bold; cursor: pointer; }
 
-/* Cake Landing Animation */
-.cake-box {
-  width: 150px; height: 120px; background: #4a2311; border: 4px solid #ff7eb3; border-radius: 30px 30px 10px 10px;
+/* Center Cake Landing */
+.panel-center { position: relative; }
+.cake-container {
+  width: 170px; height: 120px; background: #4a2311; border: 4px solid #ff7eb3; border-radius: 20px;
   color: white; text-align: center; display: flex; align-items: center; justify-content: center;
-  transform: translateY(-500px); animation: dropCake 1s cubic-bezier(0.175, 0.885, 0.32, 1.27) 3.5s forwards;
+  transform: translateY(-600px);
+  animation: dropCake 1s cubic-bezier(0.175, 0.885, 0.32, 1.27) 3.2s forwards;
 }
 @keyframes dropCake { to { transform: translateY(0); } }
 
-.hb-title { font-size: 36px; color: #d63031; }
-.date-badge, .name-badge { background: #e84393; color: white; padding: 5px 12px; border-radius: 10px; font-weight: bold; display: inline-block; }
-.btn-group { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
-.btn { background: #ff4757; color: white; border: none; padding: 8px; border-radius: 10px; cursor: pointer; font-weight: bold; }
-
-.profile-frame { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #fff; overflow: hidden; margin-bottom: 5px; }
-.profile-frame img { width: 100%; height: 100%; object-fit: cover; }
+/* Right Section */
+.panel-right { display: flex; flex-direction: column; align-items: center; }
+.profile-circle { width: 120px; height: 120px; border-radius: 50%; border: 4px solid white; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.profile-circle img { width: 100%; height: 100%; object-fit: cover; }
+.name-badge { background: #e84393; color: white; padding: 4px 14px; border-radius: 10px; font-weight: bold; margin-top: -12px; z-index: 2; }
 
 /* Modals */
-.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 10; }
-.modal-content { background: #fff; padding: 25px; border-radius: 15px; width: 300px; text-align: center; position: relative; }
-.close { position: absolute; right: 15px; top: 10px; font-size: 20px; cursor: pointer; }
-
-/* Step 4 & 5 Animation */
-.card-flip { animation: flipIn 0.6s ease; }
-@keyframes flipIn { from { transform: rotateY(90deg); } to { transform: rotateY(0); } }
-
-.heart-shape { font-size: 50px; animation: pulse 1s infinite; }
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
-.open-love-btn { background: #e84393; color: white; border: none; padding: 8px 20px; border-radius: 20px; margin-top: 15px; cursor: pointer; }
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 100; }
+.modal-box { background: white; padding: 20px; border-radius: 16px; text-align: center; position: relative; width: 280px; }
+.close-btn { position: absolute; right: 12px; top: 8px; font-size: 20px; cursor: pointer; }
+.heart-icon { font-size: 40px; }
+.love-btn { background: #e84393; color: white; border: none; padding: 8px 16px; border-radius: 10px; margin-top: 10px; cursor: pointer; }
