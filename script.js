@@ -1,51 +1,36 @@
-// ১. কেক উড়ার অ্যানিমেশনের সাথে কনফেটি/স্পার্কল ফায়ার করা
-window.addEventListener('DOMContentLoaded', () => {
-  // কেক উড়ার সময় স্পার্কল অ্যানিমেশন
-  let sparkInterval = setInterval(() => {
-    confetti({
-      particleCount: 8,
-      spread: 60,
-      origin: { x: 0.5, y: 0.5 },
-      colors: ['#ff4757', '#ff6b81', '#ffffff']
-    });
-  }, 200);
+// Step 1 -> Step 2 & 3 Transition
+setTimeout(() => {
+  document.getElementById('vscode-intro').style.display = 'none';
+  const mainStage = document.getElementById('main-stage');
+  mainStage.classList.remove('hidden');
 
-  // ২.৫ সেকেন্ড পর মেইন কার্ড পেজটি অন হবে
+  // Trigger Confetti when Cake lands (00:04 - 00:06)
   setTimeout(() => {
-    clearInterval(sparkInterval);
-    document.getElementById('intro-screen').classList.add('hidden');
-    document.getElementById('main-content').classList.remove('hidden');
+    confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+  }, 500);
 
-    // বড় সেলিব্রেশন কনফেটি
-    confetti({
-      particleCount: 100,
-      spread: 100,
-      origin: { y: 0.6 }
-    });
-  }, 2500);
-});
+  // Background switches to Pink Grid (00:07)
+  setTimeout(() => {
+    mainStage.classList.add('grid-bg');
+  }, 2000);
 
-// কেকে ক্লিক করলে হার্ট অ্যানিমেশন দেওয়া
-function triggerHearts() {
-  confetti({
-    particleCount: 40,
-    spread: 80,
-    origin: { y: 0.6 },
-    colors: ['#ff4757', '#e84393']
-  });
+}, 3300);
+
+// Modal Controls
+function openCard() {
+  document.getElementById('cardModal').style.display = 'flex';
 }
 
-// মোডাল ফাংশনালিটি
 function openEnvelope() {
   document.getElementById('envelopeModal').style.display = 'flex';
-  triggerHearts();
-}
-
-function openGreetingCard() {
-  document.getElementById('cardModal').style.display = 'flex';
-  triggerHearts();
 }
 
 function closeModal(id) {
   document.getElementById(id).style.display = 'none';
+}
+
+// Step 5: Love Cards Pop-up
+function triggerLovePopups() {
+  confetti({ particleCount: 50, spread: 100, origin: { y: 0.5 }, colors: ['#ff4757', '#e84393'] });
+  alert("💌 Love Notes: You are amazing! Have a magical Birthday! ✨");
 }
