@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,60 +9,68 @@
 </head>
 <body>
 
-  <div id="vscode-intro">
-    <div class="code-panel"><h3>index.html</h3><pre><code>&lt;div class="cake"&gt;&lt;/div&gt;</code></pre></div>
-    <div class="code-panel"><h3>script.js</h3><pre><code>startParty();</code></pre></div>
-    <div class="code-panel"><h3>style.css</h3><pre><code>background: pink;</code></pre></div>
-  </div>
-
-  <div id="main-stage" class="hidden">
+  <!-- Scale Wrapper based on viewport -->
+  <div id="app-wrapper">
     
-    <div class="bunting"></div>
+    <!-- VS Code Intro (00:00 - 00:03) -->
+    <div id="vscode-intro">
+      <div class="code-panel"><h3>index.html</h3><pre><code>&lt;div class="birthday-card"&gt;</code></pre></div>
+      <div class="code-panel"><h3>script.js</h3><pre><code>revealAnimation();</code></pre></div>
+      <div class="code-panel"><h3>style.css</h3><pre><code>.card { display: flex; }</code></pre></div>
+    </div>
 
-    <div class="content-wrapper">
-      <div class="left-section">
-        <h1 class="hb-title">Happy<br><span>Birthday</span></h1>
+    <!-- Main Canvas (Video Layout Clone) -->
+    <div id="main-canvas" class="hidden">
+      
+      <!-- Top Garland -->
+      <div class="bunting-flags"></div>
+
+      <!-- Left Panel -->
+      <div class="panel-left">
+        <h1 class="hb-title">Happy<br>Birthday</h1>
         <div class="date-badge">★ 17 Oct ★</div>
         <div class="btn-group">
-          <button class="btn" onclick="openEnvelope()">Envelope Of Love ✉️</button>
-          <button class="btn" onclick="openCard()">Greeting Card 📖</button>
+          <button class="action-btn" onclick="openEnvelope()">Envelope Of Love ✉️</button>
+          <button class="action-btn" onclick="openCard()">Greeting Card 📖</button>
         </div>
       </div>
 
-      <div class="center-section">
-        <div class="cake-box" id="cake">
+      <!-- Center Cake (Landing Animation) -->
+      <div class="panel-center">
+        <div class="cake-container" id="cake">
           <div class="cake-text">Happy 22nd Birthday!<br><span>Lishu 🎀</span></div>
         </div>
       </div>
 
-      <div class="right-section">
-        <div class="profile-frame">
-          <img src="https://i.ibb.co/6P0L8pT/anime-girl.jpg" alt="Anime Girl">
+      <!-- Right Panel -->
+      <div class="panel-right">
+        <div class="profile-circle">
+          <img src="https://i.ibb.co/6P0L8pT/anime-girl.jpg" alt="Lishu">
         </div>
         <div class="name-badge">Dear Lishu</div>
       </div>
+
     </div>
   </div>
 
+  <!-- Modals -->
   <div class="modal" id="cardModal">
-    <div class="modal-content card-flip">
-      <span class="close" onclick="closeModal('cardModal')">&times;</span>
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal('cardModal')">&times;</span>
       <h2>📖 Greeting Card</h2>
-      <p>To You! Happy Birthday, Lishu... <br><br>Wishing you all the happiness, joy, and success in the world! ✨</p>
+      <p>To You! Happy Birthday, Lishu... <br><br>Wishing you all the happiness and joy! ✨</p>
     </div>
   </div>
 
   <div class="modal" id="envelopeModal">
-    <div class="modal-content envelope-box">
-      <span class="close" onclick="closeModal('envelopeModal')">&times;</span>
-      <div class="heart-shape">❤️</div>
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal('envelopeModal')">&times;</span>
+      <div class="heart-icon">❤️</div>
       <h2>Envelope Of Love</h2>
-      <button class="open-love-btn" onclick="triggerLovePopups()">Open</button>
-      <div id="love-notes-container"></div>
+      <button class="love-btn" onclick="triggerLovePopups()">Open</button>
     </div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
