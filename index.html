@@ -9,47 +9,40 @@
 </head>
 <body>
 
-  <!-- Scale Wrapper based on viewport -->
-  <div id="app-wrapper">
-    
-    <!-- VS Code Intro (00:00 - 00:03) -->
-    <div id="vscode-intro">
-      <div class="code-panel"><h3>index.html</h3><pre><code>&lt;div class="birthday-card"&gt;</code></pre></div>
-      <div class="code-panel"><h3>script.js</h3><pre><code>revealAnimation();</code></pre></div>
-      <div class="code-panel"><h3>style.css</h3><pre><code>.card { display: flex; }</code></pre></div>
+  <!-- VS Code Intro Scene -->
+  <div id="vscode-intro">
+    <div class="code-panel"><h3>index.html</h3><pre><code>&lt;div class="card"&gt;</code></pre></div>
+    <div class="code-panel"><h3>script.js</h3><pre><code>startParty();</code></pre></div>
+    <div class="code-panel"><h3>style.css</h3><pre><code>.card { flex; }</code></pre></div>
+  </div>
+
+  <!-- Main Animated Card -->
+  <div id="main-canvas" class="hidden">
+    <div class="bunting-flags"></div>
+
+    <!-- Left Section -->
+    <div class="panel-left">
+      <h1 class="hb-title">Happy<br>Birthday</h1>
+      <div class="date-badge">★ 17 Oct ★</div>
+      <div class="btn-group">
+        <button class="action-btn" onclick="openEnvelope()">Envelope Of Love ✉️</button>
+        <button class="action-btn" onclick="openCard()">Greeting Card 📖</button>
+      </div>
     </div>
 
-    <!-- Main Canvas (Video Layout Clone) -->
-    <div id="main-canvas" class="hidden">
-      
-      <!-- Top Garland -->
-      <div class="bunting-flags"></div>
-
-      <!-- Left Panel -->
-      <div class="panel-left">
-        <h1 class="hb-title">Happy<br>Birthday</h1>
-        <div class="date-badge">★ 17 Oct ★</div>
-        <div class="btn-group">
-          <button class="action-btn" onclick="openEnvelope()">Envelope Of Love ✉️</button>
-          <button class="action-btn" onclick="openCard()">Greeting Card 📖</button>
-        </div>
+    <!-- Center Cake -->
+    <div class="panel-center">
+      <div class="cake-container" id="cake">
+        <div class="cake-text">Happy 22nd Birthday!<br><span>Lishu 🎀</span></div>
       </div>
+    </div>
 
-      <!-- Center Cake (Landing Animation) -->
-      <div class="panel-center">
-        <div class="cake-container" id="cake">
-          <div class="cake-text">Happy 22nd Birthday!<br><span>Lishu 🎀</span></div>
-        </div>
+    <!-- Right Section -->
+    <div class="panel-right">
+      <div class="profile-circle">
+        <img src="https://i.ibb.co/6P0L8pT/anime-girl.jpg" alt="Lishu">
       </div>
-
-      <!-- Right Panel -->
-      <div class="panel-right">
-        <div class="profile-circle">
-          <img src="https://i.ibb.co/6P0L8pT/anime-girl.jpg" alt="Lishu">
-        </div>
-        <div class="name-badge">Dear Lishu</div>
-      </div>
-
+      <div class="name-badge">Dear Lishu</div>
     </div>
   </div>
 
